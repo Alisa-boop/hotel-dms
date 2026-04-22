@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Редактирование клиента</h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Имя клиента:</label>
+        <input type="text" id="name" name="name" value="{{ client['name'] }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Электронная почта:</label>
+        <input type="email" id="email" name="email" value="{{ client['email'] }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="contact">Контактный телефон:</label>
+        <input type="text" id="contact" name="contact" value="{{ client['contact'] }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="address">Фактический адрес:</label>
+        <input type="text" id="address" name="address" value="{{ client['address'] }}" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="/clients" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

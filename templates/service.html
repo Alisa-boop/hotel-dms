@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% block title %} Детали услуги {% endblock %}</h2>
+<hr>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Позиция</th>
+            <th scope="col">Значение</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Название услуги</td>
+            <td>{{ service['name'] }}</td>
+        </tr>
+        <tr>
+            <td>Описание</td>
+            <td>{{ service['description'] }}</td>
+        </tr>
+        <tr>
+            <td>Стоимость</td>
+            <td>{{ service['price'] }}</td>
+        </tr>
+        <tr>
+    </tbody>
+</table>
+
+<h3>Действия с услугой</h3>
+
+<div class="row mt-4">
+    <div class="col-auto">
+        <a href="{{ url_for('contract', contract_id=contracts[0]['id_contract']) }}">
+            <button type="button" class="btn btn-secondary">
+                <i class="bi-file-earmark"></i> Перейти к договору
+            </button>
+        </a>
+    </div>
+    <div class="col-auto">
+        <a href="{{ url_for('services') }}">
+            <button type="button" class="btn btn-secondary">
+                <i class="bi-shop"></i> Вернуться к списку услуг
+            </button>
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Редактирование сотрудника</h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="name">ФИО:</label>
+        <input type="text" id="name" name="name" value="{{ employee['name'] }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="phone_number">Телефон:</label>
+        <input type="text" id="phone_number" name="phone_number" value="{{ employee['phone_number'] }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ employee['email'] }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="position">Должность:</label>
+        <input type="text" id="position" name="position" value="{{ employee['position'] }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="department">Отдел:</label>
+        <input type="text" id="department" name="department" value="{{ employee['department'] }}" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="/employees" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

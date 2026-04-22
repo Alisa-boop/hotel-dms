@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1>{% block title %} Добавление нового клиента {% endblock %}</h1>
+<br>
+<form method="post" class="px-4">
+    <div class="row mb-4">
+        <label for="organization" class="col-sm-3 col-form-label">Имя клиента</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="organization" 
+                   value="{{ request.form['organization'] }}" 
+                   placeholder="Введите имя клиента...">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="email" class="col-sm-3 col-form-label">Почта</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="email" 
+                   value="{{ request.form['email'] }}" 
+                   placeholder="Введите почту...">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="contact" class="col-sm-3 col-form-label">Контакт</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="contact" 
+                   value="{{ request.form['contact'] }}" 
+                   placeholder="Введите телефон или контакт...">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="address" class="col-sm-3 col-form-label">Адрес</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="address" 
+                   value="{{ request.form['address'] }}" 
+                   placeholder="Введите адрес...">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">
+        <i class="bi bi-person-circle"></i> Добавить клиента
+    </button>
+</form>
+{% endblock %}

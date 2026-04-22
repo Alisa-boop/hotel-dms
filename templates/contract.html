@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{% block title %} Договор №{{ contract['number'] }} от {{ contract['date'] }} {% endblock %}</h2>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Позиция</th>
+            <th scope="col">Значение</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Начальная стоимость</td>
+            <td>{{ contract['start_price'] }} ₽</td>
+        </tr>
+        <tr>
+            <td>Скидка</td>
+            <td>{{ contract['discount'] }} %</td>
+        </tr>
+        <tr>
+            <td>Итоговая стоимость</td>
+            <td>{{ contract['finish_price'] }} ₽</td>
+        </tr>
+        <tr>
+            <td>Клиент</td>
+            <td>{{ contract['client_name'] }}</td>
+        </tr>
+        <tr>
+            <td>Услуга</td>
+            <td>{{ contract['service_name'] }}</td>
+        </tr>
+        <tr>
+            <td>Составитель договора</td>
+            <td>{{ contract['employee_name'] }}</td> 
+        </tr>
+    </tbody>
+</table>
+
+<div class="row">
+    
+    <div class="col-auto">
+        <a href="{{ url_for('client', client_id=contract['client_id']) }}">
+            <button type="button" class="btn btn-secondary"><i class="bi bi-person-circle"></i> Перейти к клиенту</button>
+        </a>
+    </div>
+
+    
+    <div class="col-auto">
+        <a href="{{ url_for('service', service_id=contract['service_id']) }}">
+            <button type="button" class="btn btn-secondary"><i class="bi-shop"></i> Перейти к услуге</button>
+        </a>
+    </div>
+
+    
+    <div class="col-auto">
+        <form method="POST" action="{{ url_for('generate_contract', id_contract=contract['id_contract']) }}">
+            <button type="submit" class="btn btn-primary"><i class="bi-printer"></i> Скачать договор</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

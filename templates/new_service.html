@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{% block title %} Добавление новой услуги {% endblock %}</h1>
+<br>
+<form method="post" class="px-4">
+
+   
+    <div class="row mb-4">
+        <label for="name" class="col-sm-3 col-form-label">Название услуги </label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="name"
+                   value="{{ request.form['name'] }}"
+                   placeholder="Введите название...">
+        </div>
+    </div>
+
+  
+    <div class="row mb-3">
+        <label for="price" class="col-sm-3 col-form-label">Стоимость</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="price"
+                   value="{{ request.form['price'] }}"
+                   placeholder="1000">
+        </div>
+    </div>
+
+    
+    <div class="row mb-3">
+        <label for="description" class="col-sm-3 col-form-label">Описание</label>
+        <div class="col-sm-8">
+            <textarea class="form-control" name="description" placeholder="Описание продукта...">{{ request.form['description'] }}</textarea>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <i class="bi-shop"></i> Добавить услугу
+    </button>
+</form>
+{% endblock %}

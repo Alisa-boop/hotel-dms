@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Создать новый отчет</h2>
+<hr>
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} mt-2">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<form method="POST" action="{{ url_for('new_report') }}">
+    <div class="mb-3">
+        <label for="number" class="form-label">Номер отчета</label>
+        <input type="text" id="number" name="number" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="date" class="form-label">Дата</label>
+        <input type="date" id="date" name="date" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="report_type" class="form-label">Тип отчета</label>
+        <select id="report_type" name="report_type" class="form-select" required>
+            {% for type in report_types %}
+                <option value="{{ type['id_type'] }}">{{ type['type_name'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Описание</label>
+        <textarea id="description" name="description" class="form-control" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="employee_id" class="form-label">Исполнитель</label>
+        <select id="employee_id" name="employee_id" class="form-select" required>
+            {% for emp in employees %}
+                <option value="{{ emp['id_employee'] }}">{{ emp['name'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary"><i class="bi-graph-up-arrow"></i> Добавить отчет</button>
+</form>
+{% endblock %}

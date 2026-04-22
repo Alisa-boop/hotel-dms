@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% block title %} Детали клиента {% endblock %}</h2>
+<hr>
+
+<!-- Таблица с деталями клиента -->
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Позиция</th>
+            <th scope="col">Значение</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Имя</td>
+            <td>{{ client.name }}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{ client.email }}</td>
+        </tr>
+        <tr>
+            <td>Контактный телефон</td>
+            <td>{{ client.contact }}</td>
+        </tr>
+        <tr>
+            <td>Адрес</td>
+            <td>{{ client.address }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Договоры с участием клиента</h3>
+
+{% if contracts %}
+    <!-- Таблица с договорами -->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Тип сделки</th>
+                <th scope="col">Услуга</th>
+                <th scope="col">Начальная цена</th>
+                <th scope="col">Итоговая цена</th>
+                <th scope="col">Составитель</th>
+                <th scope="col">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contract in contracts %}
+                <tr>
+                    <td>{{ contract.number }}</td>
+                    <td>{{ contract.date }}</td>
+                    <td>{{ contract.deal_type }}</td>
+                    <td>{{ contract.service_name }}</td>
+                    <td>{{ contract.start_price }} ₽</td>
+                    <td>{{ contract.finish_price }} ₽</td>
+                    <td>{{ contract.employee_name }}</td>
+                    <td>
+                        <a href="{{ url_for('contract', contract_id=contract.id_contract) }}" class="btn btn-primary btn-sm">
+                            Подробнее
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>У данного клиента нет связанных договоров.</p>
+{% endif %}
+
+<!-- Кнопка для возврата к списку клиентов -->
+<div class="row mt-4">
+    <div class="col-auto">
+        <a href="/clients">
+            <button type="button" class="btn btn-secondary">
+                <i class="bi bi-person-circle"></i> Вернуться к списку клиентов
+            </button>
+        </a>
+    </div>
+</div>
+{% endblock %}

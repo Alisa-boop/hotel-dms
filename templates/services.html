@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Список услуг</h1>
+<div class="container mt-5 mb-3">
+    <div class="row">
+        {% for service in services %}
+        <div class="col-md-4">
+            <div class="card p-3 mb-2 border-primary">
+                <div class="card-header text-center">
+                    <a href="{{ url_for('service', service_id=service['service_id']) }}">
+                        <b>Услуга #{{ service['service_id'] }}</b>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ service['name'] }}</h5>
+                    <p class="card-text">{{ service['description'] }}</p>
+                    <p>Цена: {{ service['price'] }} ₽</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ url_for('service', service_id=service['service_id']) }}" class="btn btn-primary btn-sm">Подробнее</a>
+                    <a href="{{ url_for('edit_service', service_id=service['service_id']) }}" class="btn btn-warning btn-sm">Редактировать</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

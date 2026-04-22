@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{% block title %}  Список сотрудников {% endblock %}</h1>
+<div class="container mt-5 mb-3">
+    <div class="row">
+        {% for employee in employees %}
+        <div class="col-md-4">
+            <div class="card p-3 mb-2 border-primary">
+                <div class="card-header">
+                    <a href="{{ url_for('employee', id_employee=employee['id_employee']) }}">
+                        <b>Сотрудник # {{ employee['id_employee'] }}</b>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ employee['name'] }} ({{ employee['email'] }})</h5>
+                    <p><strong>Номер телефона:</strong> {{ employee['phone_number'] }}</p>
+                    <p><strong>Должность:</strong> {{ employee['position'] }}</p>
+                    <p><strong>Отдел:</strong> {{ employee['department'] }}</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ url_for('employee', id_employee=employee['id_employee']) }}" class="btn btn-primary btn-sm">
+                        Подробнее
+                    </a>
+                    <a href="{{ url_for('edit_employee', employee_id=employee['id_employee']) }}" class="btn btn-warning btn-sm">
+                        Редактировать
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

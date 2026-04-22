@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Список клиентов {% endblock %}</h1>
+
+<div class="container mt-5 mb-3">
+    <div class="row">
+        {% for client in clients %}
+        <div class="col-md-4">
+            <div class="card p-3 mb-2 border-primary">
+                <div class="card-header">
+                    <a href="{{ url_for('client', client_id=client['id_client']) }}">
+                        <b>Клиент # {{ client['id_client'] }}</b>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ client['name'] }} ({{ client['email'] }})</h5>
+                    <p><strong>Телефон:</strong> {{ client['contact'] }}</p>
+                    <p><strong>Адрес:</strong> {{ client['address'] }}</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ url_for('client', client_id=client['id_client']) }}" class="btn btn-primary btn-sm">
+                        Подробнее
+                    </a>
+                    <a href="{{ url_for('edit_client', client_id=client['id_client']) }}" class="btn btn-warning btn-sm">
+                        Редактировать
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
